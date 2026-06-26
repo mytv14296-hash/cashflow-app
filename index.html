@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CashFlow Pribadi</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#121212;
+color:white;
+}
+
+header{
+background:#1e88e5;
+padding:20px;
+text-align:center;
+font-size:25px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+max-width:500px;
+margin:auto;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 5px 10px rgba(0,0,0,.3);
+}
+
+h2{
+margin-top:0;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#333;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#00c853;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#00a843;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #444;
+text-align:left;
+}
+
+.plus{
+color:#00e676;
+font-weight:bold;
+}
+
+.minus{
+color:#ff5252;
+font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+💰 CashFlow Pribadi
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Saldo</h2>
+<h1 id="saldo">Rp0</h1>
+</div>
+
+<div class="card">
+
+<select id="jenis">
+<option>Pemasukan</option>
+<option>Pengeluaran</option>
+</select>
+
+<input type="number" id="nominal" placeholder="Nominal">
+
+<input type="text" id="keterangan" placeholder="Keterangan">
+
+<button onclick="simpan()">Simpan</button>
+
+</div>
+
+<div class="card">
+<h2>Riwayat</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Jenis</th>
+<th>Nominal</th>
+<th>Ket</th>
+</tr>
+</thead>
+
+<tbody id="list">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let saldo=0;
+
+function rupiah(x){
+return "Rp"+x.toLocaleString('id-ID');
+}
+
+function simpan(){
+
+let jenis=document.getElementById("jenis").value;
+
+let nominal=parseInt(document.getElementById("nominal").value);
+
+let ket=document.getElementById("keterangan").value;
+
+if(!nominal)return;
+
+if(jenis=="Pemasukan"){
+saldo+=nominal;
+}else{
+saldo-=nominal;
+}
+
+document.getElementById("saldo").innerHTML=rupiah(saldo);
+
+let warna=jenis=="Pemasukan"?"plus":"minus";
+
+document.getElementById("list").innerHTML=
+"<tr><td>"+jenis+"</td><td class='"+warna+"'>"+rupiah(nominal)+"</td><td>"+ket+"</td></tr>"
++
+document.getElementById("list").innerHTML;
+
+document.getElementById("nominal").value="";
+document.getElementById("keterangan").value="";
+
+}
+
+</script>
+
+</body>
+</html>
