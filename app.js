@@ -1,5 +1,4 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbwHcpDVvc0WSgq7P4KlMlJ-9VhRfK-7tD5dR25jiKZlc9QnxdOnM6-mVTGzsvY-7RKDvg/exec";
-
 let saldo = 0;
 let totalMasuk = 0;
 let totalKeluar = 0;
